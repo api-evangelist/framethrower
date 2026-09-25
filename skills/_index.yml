@@ -1,0 +1,12 @@
+generated: '2026-09-25'
+method: generated
+source: Packaged Agent Skills generated from openapi/framethrower-openapi.yml; every step grounded in an operationId verified verbatim in the spec. No provider-published skills or AGENTS.md were found in the framethrower-ai GitHub org.
+skills:
+- file: framethrower-find-visual-references.md
+  name: framethrower-find-visual-references
+  api: openapi/framethrower-openapi.yml
+  operations: [search, searchByColor, searchByImage, findSimilar, getFrame]
+- file: framethrower-explore-a-film.md
+  name: framethrower-explore-a-film
+  api: openapi/framethrower-openapi.yml
+  operations: [suggest, listFilms, getFilm, listFilmFrames]

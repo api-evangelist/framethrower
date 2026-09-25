@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay for the FrameThrower API
+  version: 1.0.0
+extends: openapi/_original/framethrower-openapi.json
+x-generated: '2026-09-25'
+x-method: generated
+x-source: openapi/_original/framethrower-openapi.json
+x-rationale: Adds the credit-metering response headers and the MCP server link that the provider documents in its JSON API reference (https://framethrower.ai/api/v1) and llms.txt but that the OpenAPI does not declare. The original spec is not mutated.
+actions:
+- target: $.info
+  description: Point at the provider's hosted MCP server, which exposes four of these operations as tools.
+  update:
+    x-mcp-server: https://framethrower.ai/api/mcp
+- target: $.components
+  description: Declare the credit headers every metered response carries (per https://framethrower.ai/api/v1 pricing.response_headers).
+  update:
+    headers:
+      X-Credits-Cost:
+        description: credits this call cost
+        schema:
+          type: integer
+      X-Credits-Remaining:
+        description: balance after this call
+        schema:
+          type: integer

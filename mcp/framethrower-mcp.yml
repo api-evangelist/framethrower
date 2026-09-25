@@ -1,0 +1,39 @@
+generated: '2026-09-25'
+method: probed
+source:
+- https://framethrower.ai/api/mcp
+- https://framethrower.ai/mcp
+- https://github.com/framethrower-ai/framethrower-mcp
+- https://registry.modelcontextprotocol.io/v0/servers?search=framethrower
+status: live
+server:
+  name: FrameThrower
+  version: 1.0.0
+  protocolVersion: '2025-06-18'
+  registry_name: ai.framethrower/framethrower
+  transport: streamable-http
+  capabilities:
+    tools:
+      listChanged: true
+auth:
+  type: oauth2
+  note: OAuth 2.1 per the provider README; authorization server metadata at https://framethrower.ai/.well-known/oauth-authorization-server (authorization_code + PKCE S256, dynamic client registration at /api/auth/mcp/register). initialize and tools/list answered anonymously (200) on 2026-09-25; tool calls spend account credits.
+tools:
+- name: search_frames
+  inputs: [query, limit]
+  required: [query]
+- name: find_by_craft
+  inputs: [lens, shot_size, visual_style, setting, time_of_day, director, year_min, year_max, limit]
+- name: find_similar
+  inputs: [frameId, limit]
+  required: [frameId]
+- name: get_frame_details
+  inputs: [frameId]
+  required: [frameId]
+tools_list_file: mcp/framethrower-mcp-tools-list.json
+deployment:
+  mode: remote
+  endpoint: https://framethrower.ai/api/mcp
+  auth: oauth
+  verified: probed
+  note: The README offers npx -y mcp-remote https://framethrower.ai/api/mcp as a bridge for stdio-only clients; mcp-remote is a third-party bridge, not a FrameThrower package.

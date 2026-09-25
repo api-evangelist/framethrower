@@ -1,0 +1,159 @@
+name: FrameThrower
+aid: framethrower
+description: FrameThrower is a film-still reference library for filmmakers, students and creative teams, indexed
+  frame by frame on lighting, lens character, shot size, camera angle, colour palette, mood and era. A REST API
+  (OpenAPI 3.1 at https://framethrower.ai/api/v1/openapi.json, 11 endpoints, bearer-token auth) and an MCP server
+  at https://framethrower.ai/api/mcp (four tools, OAuth 2.1) expose visual-reference search and film and frame information;
+  an npm SDK (framethrower-ai) and an MIT-licensed MCP repository (github.com/framethrower-ai/framethrower-mcp)
+  are published. Free plan with usage-based paid upgrades. Submitter-stated by the founder, Leo Kadieff.
+url: https://raw.githubusercontent.com/api-evangelist/framethrower/refs/heads/main/apis.yml
+x-type: company
+x-source: apis-io-submission
+x-submitted-by: Leo Kadieff (founder), leo@framethrower.ai, email to info@apis.io 2026-09-25
+x-probe-note: framethrower.ai is a Next.js site that answers invented top-level paths (e.g. /this-does-not-exist-xyz,
+  /privacy, /terms) with the same 200 HTML shell, while /.well-known/* misses and /openapi.json return 404. Never
+  credit a well-known or index document from a status code; only a body that parses as the named format counts.
+  The real machine surfaces are /api/v1/openapi.json, /api/v1 (JSON reference), /llms.txt, /api/mcp and the two
+  OAuth metadata documents under /.well-known/. The real legal pages are /legal/tos and /legal/privacy.
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-25 (local-v5; was email submission worked by the support sweep 2026-09-25;
+  OpenAPI 3.1 (11 paths), MCP initialize 200, llms.txt 200, npm SDK published; site is an SPA catch-all)
+specificationVersion: '0.23'
+created: '2026-09-25'
+modified: '2026-09-25'
+tags:
+- Film
+- Cinematography
+- Visual Reference
+- Image Search
+- Media
+- Creative Tools
+- MCP
+- Agent-Native
+image: https://framethrower.ai/logo/og-image.png?v=3
+maintainers:
+- FN: FrameThrower
+  email: contact@framethrower.ai
+  url: https://framethrower.ai/
+common:
+- type: AgenticAccess
+  url: agentic-access/framethrower-agentic-access.yml
+- type: Plans
+  url: plans/framethrower-plans-pricing.yml
+- type: Spectral
+  url: rules/framethrower-rules.yml
+- type: JSONLD
+  url: json-ld/framethrower-context.jsonld
+- type: Vocabulary
+  url: vocabulary/framethrower-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/framethrower-data-model.yml
+- type: Conventions
+  url: conventions/framethrower-conventions.yml
+- type: OAuthScopes
+  url: scopes/framethrower-scopes.yml
+- type: Lifecycle
+  url: lifecycle/framethrower-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/framethrower-problem-types.yml
+- type: Conformance
+  url: conformance/framethrower-conformance.yml
+- type: Overlay
+  url: overlays/framethrower-api-overlay.yaml
+- type: LLMsTxt
+  url: llms/framethrower-llms.txt
+- type: ToolCrosswalk
+  url: mcp/framethrower-tool-crosswalk.yml
+- type: MCPServer
+  url: mcp/framethrower-mcp.yml
+- type: WellKnown
+  url: well-known/framethrower-well-known.yml
+- type: Hosts
+  url: hosts/framethrower-hosts.yml
+- type: Vendors
+  url: vendors/framethrower-vendors.yml
+- type: SDKs
+  url: packages/framethrower-packages.yml
+- type: Packages
+  url: packages/framethrower-packages.yml
+- type: Authentication
+  url: authentication/framethrower-authentication.yml
+- type: DomainSecurity
+  url: security/framethrower-domain-security.yml
+- type: Website
+  url: https://framethrower.ai/
+- type: Documentation
+  url: https://framethrower.ai/developers
+- type: APIReference
+  url: https://framethrower.ai/api/v1
+- type: GitHubOrganization
+  url: https://github.com/framethrower-ai
+- type: GitHubRepository
+  url: https://github.com/framethrower-ai/framethrower-mcp
+- type: GitHubRepository
+  url: https://github.com/framethrower-ai/framethrower-sdk
+- type: GitHubRepository
+  url: https://github.com/framethrower-ai/comfyui-framethrower
+- type: Pricing
+  url: https://framethrower.ai/pricing
+- type: SignUp
+  url: https://framethrower.ai/register
+- type: TermsOfService
+  url: https://framethrower.ai/legal/tos
+- type: PrivacyPolicy
+  url: https://framethrower.ai/legal/privacy
+- type: AboutUs
+  url: https://framethrower.ai/about
+- type: Integrations
+  url: https://framethrower.ai/comfyui
+apis:
+- name: FrameThrower API
+  description: 'REST API over the FrameThrower film-still library: plain-language, reference-image and colour search,
+    craft-attribute browsing, similar-frame lookup, and film and per-frame metadata (thumbnails, palettes, AI prompt,
+    deep links; never raw image bytes). Eleven endpoints, bearer token (ft_ prefix), metered per call in credits.'
+  humanURL: https://framethrower.ai/developers
+  baseURL: https://framethrower.ai/api/v1
+  tags:
+  - Film
+  - Cinematography
+  - Image Search
+  - Visual Reference
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/framethrower-openapi.yml
+  - type: OpenAPI
+    name: OpenAPI (provider-hosted)
+    url: https://framethrower.ai/api/v1/openapi.json
+  - type: Documentation
+    url: https://framethrower.ai/developers
+  - type: APIReference
+    url: https://framethrower.ai/api/v1
+  - type: JSONSchema
+    url: json-schema/framethrower-frame-schema.json
+  aid: framethrower:framethrower-api
+- name: FrameThrower MCP Server
+  description: Remote Model Context Protocol server (streamable HTTP) at https://framethrower.ai/api/mcp with four
+    tools (search_frames, find_by_craft, find_similar, get_frame_details), OAuth 2.1 with dynamic client registration;
+    listed in the official MCP registry as ai.framethrower/framethrower.
+  humanURL: https://framethrower.ai/mcp
+  baseURL: https://framethrower.ai/api/mcp
+  tags:
+  - MCP
+  - Film
+  - Cinematography
+  - Agent-Native
+  - Visual Reference
+  properties:
+  - type: Documentation
+    url: https://framethrower.ai/mcp
+  - type: GitHubRepository
+    url: https://github.com/framethrower-ai/framethrower-mcp
+  aid: framethrower:framethrower-mcp-server
+x-enrichment:
+  date: '2026-09-25'
+  status: enriched
+  artifacts_added: 37
+  pass: local-v5

@@ -1,0 +1,6 @@
+generated: '2026-09-25'
+method: probed
+generator: harvest-llms.py
+source: https://framethrower.ai/llms.txt
+bytes: 3644
+note: saved verbatim; the provider's own document

@@ -1,0 +1,45 @@
+# FrameThrower
+
+> FrameThrower (framethrower.ai) is the reference app for the future creative. One of the largest film still libraries on the internet — indexed frame by frame on lighting key and quality, lens character, shot size, camera angle, colour palette in hex, mood and era — and reachable by machines: a REST API, an MCP server and an npm SDK, so agents and creative tools query it directly instead of scraping a gallery. Built by senior filmmakers and ads creatives, for working film professionals. Generous free tier, usage-based pricing.
+
+## Machine access
+
+- [API reference (JSON)](https://framethrower.ai/api/v1): the machine-readable spec — every endpoint, parameter, filter vocabulary and price, served as JSON. Start here.
+- [OpenAPI 3.1 spec](https://framethrower.ai/api/v1/openapi.json): the same API as a standard OpenAPI document — point an SDK generator or agent framework at this.
+- [Developer docs](https://framethrower.ai/developers): authentication, examples, and the shape of a frame object
+- REST API: 11 endpoints, bearer-token auth, no rate limits. `POST /api/v1/search` (plain-language), `POST /api/v1/similar`, `POST /api/v1/browse` (craft filters), `GET /api/v1/films`, `GET /api/v1/frames`, `GET /api/v1/suggest` (free).
+- MCP server: `https://framethrower.ai/api/mcp` — four tools, `search_frames`, `find_by_craft`, `find_similar`, `get_frame_details`. OAuth 2.1; connect any MCP client and search the library in conversation.
+- npm SDK: `npm install framethrower-ai`
+- Pricing: $2 of credits free on signup, no card, spendable through the API from the first call. Then $1 = 1,000 credits; a search is 2 credits, so $1 buys 500 searches. Credits never expire. Out of credits returns HTTP 402 with the cost, the balance and a top-up link.
+
+## What it returns
+
+Metadata, thumbnail URLs, extracted colour palettes, the per-frame AI prompt, and a deep link back to FrameThrower — never raw image bytes. It is a reference and discovery tool, not an image-delivery pipe.
+
+## Film catalog
+
+- [All films](https://framethrower.ai/film): browsable index of 5,490 films with stills
+- [Film pages](https://framethrower.ai/film/12-years-a-slave-2013): per-film stills, credits, techniques and a data-derived cinematography summary (URL pattern: /film/[title-year])
+- [Directors](https://framethrower.ai/directors): 923 director pages — films and stills by director
+- [Cinematographers](https://framethrower.ai/cinematographers): 882 cinematographer pages — films and stills by DP
+
+## Cinematography techniques
+
+- [Technique index](https://framethrower.ai/style): 28 technique pages (lighting, framing, lenses, time of day) with definitions, craft articles and real-frame examples
+
+## Comparisons
+
+- [ShotDeck alternative](https://framethrower.ai/shotdeck-alternative)
+- [Flim.ai alternative](https://framethrower.ai/flim-alternative)
+- [FilmGrab alternative](https://framethrower.ai/filmgrab-alternative)
+- [Best movie stills sites](https://framethrower.ai/best-movie-stills-sites): honest roundup of the landscape, us included with disclosure
+
+## Who builds it
+
+FrameThrower is built by senior filmmakers and ads creatives — people who have shot, cut and pitched for a living — for working film professionals. That is why the index is organised around lighting, lens and framing rather than keywords.
+
+## Terms
+
+- [Intended use](https://framethrower.ai/legal/intended-use)
+- [Sitemap](https://framethrower.ai/sitemap.xml): all public URLs
+- Frames shown publicly are reduced-resolution references for commentary and education; rights remain with their owners. We do not grant a licence to the frames.

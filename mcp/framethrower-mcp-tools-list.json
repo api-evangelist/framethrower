@@ -1,0 +1,142 @@
+{
+  "result": {
+    "tools": [
+      {
+        "name": "search_frames",
+        "description": "Search the FrameThrower cinematography reference library by concept, mood, color, composition, or scene. Returns reference frames with film/credits metadata, a preview thumbnail, the full-resolution image URL (use this one for slide decks and documents), a precomputed DEPTH MAP url (greyscale, same dimensions as the frame — pass it straight to a depth ControlNet or any image-to-image pipeline that wants geometry), and a link to view on FrameThrower.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Natural-language description, e.g. \"neon-lit rainy street at night\""
+            },
+            "limit": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 40
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "annotations": {
+          "title": "Search film stills",
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "find_by_craft",
+        "description": "Find frames by specific cinematography craft attributes — lens character, shot size, visual style, setting, time of day, director, or year range. All optional; combine to narrow. Use this to refine a search precisely.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "lens": {
+              "description": "e.g. \"anamorphic\", \"spherical\", \"vintage_soft\"",
+              "type": "string"
+            },
+            "shot_size": {
+              "description": "e.g. \"closeup\", \"wide\", \"medium\"",
+              "type": "string"
+            },
+            "visual_style": {
+              "type": "string"
+            },
+            "setting": {
+              "description": "\"interior\" or \"exterior\"",
+              "type": "string"
+            },
+            "time_of_day": {
+              "description": "e.g. \"night\", \"day\"",
+              "type": "string"
+            },
+            "director": {
+              "type": "string"
+            },
+            "year_min": {
+              "type": "number"
+            },
+            "year_max": {
+              "type": "number"
+            },
+            "limit": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 40
+            }
+          }
+        },
+        "annotations": {
+          "title": "Find frames by cinematography attribute",
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "find_similar",
+        "description": "Find frames visually/semantically similar to a given frame id (from a prior result). Use this to pull more references like one the user shortlisted.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "frameId": {
+              "type": "string"
+            },
+            "limit": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 40
+            }
+          },
+          "required": [
+            "frameId"
+          ]
+        },
+        "annotations": {
+          "title": "Find similar frames",
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_frame_details",
+        "description": "Get the full metadata + preview thumbnail + full-resolution image URL + depth map URL + link for a single frame id. The depth map is precomputed and free — use it when the user is generating images and needs the composition or camera geometry of this frame.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "frameId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "frameId"
+          ]
+        },
+        "annotations": {
+          "title": "Get frame details",
+          "readOnlyHint": true,
+          "openWorldHint": true
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      }
+    ]
+  },
+  "jsonrpc": "2.0",
+  "id": 2
+}

@@ -1,0 +1,39 @@
+generated: '2026-09-25'
+method: derived
+source:
+- mcp/framethrower-mcp-tools-list.json
+- openapi/framethrower-openapi.yml
+surfaces:
+  openapi: openapi/framethrower-openapi.yml
+  rest_base: https://framethrower.ai/api/v1
+  mcp: https://framethrower.ai/api/mcp
+  note: MCP tools/list answered anonymously, so tool inputSchemas are real; bindings are by name and parameter overlap, not provider-declared.
+crosswalk:
+- tool: search_frames
+  category: search
+  rest: [search]
+  binding: POST /search (query, limit)
+  confidence: high
+- tool: find_by_craft
+  category: search
+  rest: [browse]
+  binding: POST /browse (shot_type/lens_character/setting/time_of_day/visual_style/director/year_min/year_max/limit)
+  confidence: medium
+  note: tool names shot_size and lens where the REST body names shot_type and lens_character.
+- tool: find_similar
+  category: search
+  rest: [findSimilar]
+  binding: POST /similar (frameId, limit)
+  confidence: high
+- tool: get_frame_details
+  category: read
+  rest: [getFrame]
+  binding: GET /frames?id=
+  confidence: high
+mcp_only: []
+rest_only: [searchByImage, searchByColor, randomFrames, suggest, listFilms, getFilm, listFilmFrames]
+coverage:
+  tools: 4
+  tools_bound: 4
+  operations: 11
+  operations_bound: 4

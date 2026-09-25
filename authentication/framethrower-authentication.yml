@@ -1,0 +1,38 @@
+generated: '2026-09-25'
+method: searched
+source:
+- openapi/framethrower-openapi.yml
+- https://framethrower.ai/api/v1
+- https://framethrower.ai/.well-known/oauth-authorization-server
+- https://framethrower.ai/.well-known/oauth-protected-resource
+docs: https://framethrower.ai/developers
+summary:
+  types:
+  - http
+  - oauth2
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  surface: REST API (https://framethrower.ai/api/v1)
+  description: Personal access token, prefix `ft_`. Create one at https://framethrower.ai/settings?tab=api — free accounts included, no plan required.
+  header: 'Authorization: Bearer ft_YOUR_TOKEN'
+  token_prefix: ft_
+  how_to_get_token: Sign up at https://framethrower.ai/register (free, no card), then create a token at https://framethrower.ai/settings?tab=api
+  sources:
+  - openapi/framethrower-openapi.yml
+  - https://framethrower.ai/api/v1
+- name: mcpOAuth
+  type: oauth2
+  surface: MCP server (https://framethrower.ai/api/mcp)
+  flows:
+    authorizationCode:
+      authorizationUrl: https://framethrower.ai/api/auth/mcp/authorize
+      tokenUrl: https://framethrower.ai/api/auth/mcp/token
+      pkce: S256
+  registration_endpoint: https://framethrower.ai/api/auth/mcp/register
+  scopes_supported: [openid, profile, email, offline_access]
+  description: OAuth 2.1 for MCP clients per the framethrower-mcp README; metadata served at /.well-known/oauth-authorization-server (RFC 8414) and /.well-known/oauth-protected-resource (RFC 9728).
+  sources:
+  - https://framethrower.ai/.well-known/oauth-authorization-server
+  - https://github.com/framethrower-ai/framethrower-mcp

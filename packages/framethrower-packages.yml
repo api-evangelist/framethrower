@@ -1,0 +1,27 @@
+generated: '2026-09-25'
+method: searched
+source:
+- https://registry.npmjs.org/framethrower-ai
+- https://api.comfy.org/nodes/comfyui-framethrower/versions
+- https://api.github.com/orgs/framethrower-ai/repos
+packages:
+- name: framethrower-ai
+  registry: npm
+  url: https://www.npmjs.com/package/framethrower-ai
+  language: JavaScript/TypeScript
+  official: true
+  version: 1.1.2
+  published: '2026-08-12'
+  repository: https://github.com/framethrower-ai/framethrower-sdk
+  license: MIT
+  note: Official JavaScript/TypeScript client; npm homepage https://framethrower.ai/developers, linked from the developers page.
+- name: comfyui-framethrower
+  registry: comfy-registry
+  url: https://registry.comfy.org/nodes/comfyui-framethrower
+  language: Python
+  official: true
+  version: 0.9.8
+  published: '2026-08-31'
+  repository: https://github.com/framethrower-ai/comfyui-framethrower
+  license: MIT
+  note: ComfyUI custom node (publisher id framethrower) that searches the library from inside ComfyUI; not on PyPI (pypi.org/pypi/comfyui-framethrower/json 404).

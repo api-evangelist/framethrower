@@ -1,0 +1,11 @@
+name: FrameThrower API rate limits
+generated: '2026-09-25'
+method: searched
+source: https://framethrower.ai/api/v1
+limit_count: 0
+headers:
+- X-Credits-Cost
+- X-Credits-Remaining
+exhaustion_status: 402
+limits: []
+note: 'The provider states the API has no rate limits ("usage-based credits, no rate limits and no subscription required"); usage is bounded by the credit balance instead, signalled by X-Credits-Cost / X-Credits-Remaining on every metered response, and exhaustion returns HTTP 402 with code insufficient_credits. The consumer web plans carry daily/monthly search quotas, recorded in plans/.'

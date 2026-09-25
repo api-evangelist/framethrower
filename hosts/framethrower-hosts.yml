@@ -1,0 +1,46 @@
+generated: '2026-09-25'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 2
+  own: 1
+  other_domain: 0
+  platform: 1
+  roles:
+  - source
+  - website
+hosts:
+- host: framethrower.ai
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Website
+  - Documentation
+  - APIReference
+  - Pricing
+  - SignUp
+  - TermsOfService
+  - PrivacyPolicy
+  - AboutUs
+  - Integrations
+  serves:
+  - api
+  - docs
+  - hosting
+  vendor: vercel
+  registrable_domain: framethrower.ai
+  role: website
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  - GitHubRepository
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform

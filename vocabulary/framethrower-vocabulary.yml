@@ -1,0 +1,40 @@
+generated: '2026-09-25'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/framethrower-openapi.yml
+vocabulary:
+  name: FrameThrower Domain Vocabulary
+  description: 'Terms declared by FrameThrower''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-09-25'
+  terms:
+  - term: Search
+    definition: Find frames by text, image or colour
+    tags:
+    - Resource Group
+    source: openapi/framethrower-openapi.yml
+  - term: Frames
+    definition: Individual frames and their metadata
+    tags:
+    - Resource Group
+    source: openapi/framethrower-openapi.yml
+  - term: Films
+    definition: The film catalogue
+    tags:
+    - Resource Group
+    source: openapi/framethrower-openapi.yml
+  - term: Discovery
+    definition: Autocomplete and helpers
+    tags:
+    - Resource Group
+    source: openapi/framethrower-openapi.yml
+  - term: Frame
+    definition: A single film frame. Thumbnails and deep links only — never raw image bytes.
+    tags:
+    - Object
+    source: openapi/framethrower-openapi.yml#/components/schemas/Frame
+  - term: Error
+    definition: 'Object declared by the contract with fields: error, docs, api_reference.'
+    tags:
+    - Object
+    source: openapi/framethrower-openapi.yml#/components/schemas/Error

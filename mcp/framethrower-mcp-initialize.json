@@ -1,0 +1,17 @@
+{
+  "result": {
+    "protocolVersion": "2025-06-18",
+    "capabilities": {
+      "tools": {
+        "listChanged": true
+      }
+    },
+    "serverInfo": {
+      "name": "FrameThrower",
+      "version": "1.0.0"
+    },
+    "instructions": "FrameThrower is a cinematography reference library. Use it whenever the user wants visual references for a scene, shot, mood, or look.\n\nPresentation: ALWAYS surface the \"View all on FrameThrower\" gallery link first and prominently — it opens the full visual result grid on FrameThrower, which is the reliable way for the user to actually see the thumbnails (inline image rendering in chat is unreliable). Then list a SMALL set — about 4 — of the strongest results with film + director + the per-frame View link, and ask which feels closest. Do not dump long lists.\n\nRefining (the core loop): when the user reacts (\"more like #2\", \"more anamorphic, less daylight\", \"tighter and colder\"), refine — call find_similar on the id of a frame they liked, or find_by_craft with the adjusted attributes (lens, shot_size, visual_style, setting, time_of_day, director, year range). Keep the set small and iterate until they are happy.\n\nAlways keep the View link with each frame so the user can open or save it on FrameThrower. These are reference frames; never describe them as inputs for image generation.\n\nImage quality: each frame carries TWO urls. The inline ![frame] preview is a 1280px thumbnail, sized for chat. The \"Full-resolution image\" url is the original file — use that one whenever the user is building a slide deck, lookbook, PDF, moodboard or any document, and when they ask to download, insert, embed or export an image. Never put the thumbnail into a deliverable. Both are public urls, so tools that fetch an image by url (Google Slides \"Insert > Image > By URL\", Docs, Keynote) can take the full-resolution one directly. Frames come from finished films at their native resolution, so it varies per frame — some are HD, some are far larger, and no url makes a frame sharper than the source."
+  },
+  "jsonrpc": "2.0",
+  "id": 1
+}

@@ -1,0 +1,16 @@
+generated: '2026-09-25'
+method: searched
+source:
+- https://framethrower.ai/legal/privacy
+- https://framethrower.ai/legal/tos
+signals:
+  data_subject_request:
+    url: https://framethrower.ai/legal/privacy
+    evidence: 'We honor these requests for all users regardless of location: email privacy@framethrower.ai and we’ll respond within 30 days.'
+    channel: privacy@framethrower.ai
+    stated_sla: we’ll respond within 30 days
+  notice_and_action:
+    url: https://framethrower.ai/legal/tos
+    evidence: 'Our designated agent for copyright notices is: Copyright Agent, FrameThrower Email: copyright@framethrower.ai (Registered with the U.S. Copyright Office Designated Agent Directory.)'
+    channel: copyright@framethrower.ai
+note: No subprocessor list (the privacy policy says to contact hello@framethrower.ai for details), SBOM, accessibility conformance report, data-residency statement, transparency report or support-lifetime statement found.

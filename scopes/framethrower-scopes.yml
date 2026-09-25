@@ -1,0 +1,14 @@
+generated: '2026-09-25'
+method: probed
+source: https://framethrower.ai/.well-known/oauth-authorization-server
+docs: https://github.com/framethrower-ai/framethrower-mcp
+note: Scopes are the OpenID Connect standard set advertised by the MCP authorization server; the REST API uses personal bearer tokens with no scopes.
+scopes:
+- name: openid
+  surface: mcp
+- name: profile
+  surface: mcp
+- name: email
+  surface: mcp
+- name: offline_access
+  surface: mcp

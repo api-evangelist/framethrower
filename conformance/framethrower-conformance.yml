@@ -1,0 +1,41 @@
+generated: '2026-09-25'
+method: searched
+source:
+- openapi/framethrower-openapi.yml
+- https://framethrower.ai/.well-known/oauth-authorization-server
+- https://framethrower.ai/.well-known/oauth-protected-resource
+- https://framethrower.ai/api/mcp
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: the document declares 3.1.0
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: bearerAuth (http)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, page, per_page
+- id: rfc8414
+  conforms: true
+  evidence: https://framethrower.ai/.well-known/oauth-authorization-server serves authorization server metadata (issuer https://framethrower.ai)
+- id: rfc9728
+  conforms: true
+  evidence: https://framethrower.ai/.well-known/oauth-protected-resource serves protected resource metadata naming authorization_servers
+    [https://framethrower.ai]
+- id: rfc7591
+  conforms: true
+  evidence: registration_endpoint https://framethrower.ai/api/auth/mcp/register advertised in the authorization server metadata
+- id: oauth2-pkce-s256
+  conforms: true
+  evidence: code_challenge_methods_supported [S256] in https://framethrower.ai/.well-known/oauth-authorization-server (MCP surface)
+- id: mcp-2025-06-18
+  conforms: true
+  evidence: initialize at https://framethrower.ai/api/mcp returned protocolVersion 2025-06-18 over streamable HTTP (2026-09-25)
+note: Spec-derived rows (derive-conformance.py) describe the REST OpenAPI only; rfc8414/rfc9728/rfc7591/oauth2-pkce-s256/mcp-2025-06-18
+  were probed live on the MCP surface on 2026-09-25.

@@ -1,0 +1,89 @@
+{
+  "@context": {
+    "@vocab": "https://framethrower.ai/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "framethrower": "https://framethrower.ai/schema#",
+    "Frame": "framethrower:Frame",
+    "id": {
+      "@id": "framethrower:id",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "framethrower:url",
+      "@type": "@id"
+    },
+    "thumbnail": {
+      "@id": "framethrower:thumbnail",
+      "@type": "@id"
+    },
+    "depthUrl": {
+      "@id": "framethrower:depthUrl",
+      "@type": "@id"
+    },
+    "score": {
+      "@id": "framethrower:score",
+      "@type": "xsd:decimal"
+    },
+    "film": {
+      "@id": "framethrower:film"
+    },
+    "shot_type": {
+      "@id": "framethrower:shot_type",
+      "@type": "xsd:string"
+    },
+    "lens_character": {
+      "@id": "framethrower:lens_character",
+      "@type": "xsd:string"
+    },
+    "camera_angle": {
+      "@id": "framethrower:camera_angle",
+      "@type": "xsd:string"
+    },
+    "setting": {
+      "@id": "framethrower:setting",
+      "@type": "xsd:string"
+    },
+    "time_of_day": {
+      "@id": "framethrower:time_of_day",
+      "@type": "xsd:string"
+    },
+    "visual_style": {
+      "@id": "framethrower:visual_style",
+      "@type": "xsd:string"
+    },
+    "colorPalette": {
+      "@id": "framethrower:colorPalette",
+      "@container": "@list"
+    },
+    "colorDescription": {
+      "@id": "framethrower:colorDescription",
+      "@type": "xsd:string"
+    },
+    "prompt": {
+      "@id": "framethrower:prompt",
+      "@type": "xsd:string"
+    },
+    "Error": "framethrower:Error",
+    "error": {
+      "@id": "framethrower:error",
+      "@type": "xsd:string"
+    },
+    "docs": {
+      "@id": "framethrower:docs",
+      "@type": "xsd:string"
+    },
+    "api_reference": {
+      "@id": "framethrower:api_reference",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "FrameThrower API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects FrameThrower's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-09-25) from openapi/framethrower-openapi.yml.",
+  "dcterms:created": "2026-09-25",
+  "dcterms:source": [
+    "openapi/framethrower-openapi.yml"
+  ]
+}

@@ -1,0 +1,9 @@
+generated: '2026-09-25'
+method: searched
+source:
+- https://framethrower.ai/api/v1
+- https://framethrower.ai/legal/tos
+versioning: URL-path major version (/api/v1); OpenAPI info.version 1.0.0. No published versioning policy.
+deprecation: No deprecation policy, Sunset/Deprecation headers or deprecated operations published.
+status_page: null
+note: The Terms of Service (updated 2026-08-26) state pricing may change with at least 30 days' notice; no status page or SLA is linked from the site.

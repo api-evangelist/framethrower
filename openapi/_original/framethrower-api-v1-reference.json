@@ -1,0 +1,393 @@
+{
+  "name": "FrameThrower API",
+  "version": "v1",
+  "description": "Cinematography reference search engine. Search curated film frames by concept, color, mood, composition, or image similarity. Returns metadata, thumbnails, AI prompts, and deep links — never raw image bytes. Built for agents, creative tools, and production pipelines.",
+  "docs": "https://framethrower.ai/developers",
+  "openapi": "https://framethrower.ai/api/v1/openapi.json",
+  "base_url": "https://framethrower.ai/api/v1",
+  "auth": {
+    "type": "bearer",
+    "header": "Authorization: Bearer ft_YOUR_TOKEN",
+    "how_to_get_token": "Sign up at https://framethrower.ai/register (free, no card), then create a token at https://framethrower.ai/settings?tab=api"
+  },
+  "pricing": {
+    "model": "usage-based credits, no rate limits and no subscription required",
+    "free_on_signup": "$2 of credits, no card",
+    "rate": "$1 = 1,000 credits",
+    "cost_per_call": {
+      "/search": 2,
+      "/search/color": 2,
+      "/search/image": 10,
+      "/similar": 2,
+      "/browse": 2,
+      "/films": 2,
+      "/films/:slug": 2,
+      "/films/frames": 2,
+      "/frames": 2,
+      "/frames/random": 2,
+      "/suggest": 0
+    },
+    "in_plain_terms": "$1 buys 500 searches, or 100 image searches. /suggest is free — it is an in-memory prefix match and costs us nothing to serve.",
+    "response_headers": {
+      "X-Credits-Cost": "credits this call cost",
+      "X-Credits-Remaining": "balance after this call"
+    },
+    "out_of_credits": "HTTP 402 with {code: \"insufficient_credits\", cost, balance, buy_credits}",
+    "buy_credits": "https://framethrower.ai/settings?tab=billing"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/search",
+      "description": "Text search — describe a mood, scene, or visual concept in natural language.",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "required": true,
+          "description": "Natural language search query"
+        },
+        "limit": {
+          "type": "integer",
+          "default": 20,
+          "min": 1,
+          "max": 50
+        },
+        "mode": {
+          "type": "string",
+          "default": "hybrid",
+          "enum": [
+            "hybrid",
+            "description"
+          ],
+          "description": "hybrid (default, use this) fuses the image embedding with the scene-description embedding via reciprocal rank fusion; description ranks on the written scene descriptions only — better when the query is about story, action, or named objects"
+        }
+      },
+      "example": {
+        "query": "neon-lit rainy street at night",
+        "limit": 5
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/search/image",
+      "description": "Image search — find frames matching a reference image by visual similarity, color, and semantic meaning.",
+      "parameters": {
+        "imageUrl": {
+          "type": "string",
+          "required": true,
+          "description": "URL of a reference image"
+        },
+        "limit": {
+          "type": "integer",
+          "default": 20,
+          "min": 1,
+          "max": 50
+        }
+      },
+      "example": {
+        "imageUrl": "https://example.com/reference.jpg",
+        "limit": 10
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/search/color",
+      "description": "Color search — find frames dominated by specific hex colors or a palette.",
+      "parameters": {
+        "color": {
+          "type": "string",
+          "description": "Single hex color (e.g. \"#e94560\"). Use color OR colors, not both."
+        },
+        "colors": {
+          "type": "array",
+          "description": "Array of up to 6 hex colors blended together."
+        },
+        "limit": {
+          "type": "integer",
+          "default": 20,
+          "min": 1,
+          "max": 50
+        }
+      },
+      "example": {
+        "colors": [
+          "#e94560",
+          "#1a1a2e",
+          "#16213e"
+        ],
+        "limit": 10
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/browse",
+      "description": "Browse by craft — filter frames by cinematography attributes. No text query needed. Combine any filters. Closed-vocabulary values are listed in `enum`; common spellings (\"close-up\", \"magic hour\") are normalized for you, and anything unrecognised comes back in meta.hint rather than as a silent empty result.",
+      "parameters": {
+        "shot_type": {
+          "type": "string",
+          "enum": [
+            "medium",
+            "closeup",
+            "wide",
+            "fullbody",
+            "establishing"
+          ]
+        },
+        "lens_character": {
+          "type": "string",
+          "enum": [
+            "anamorphic",
+            "spherical",
+            "vintage_soft"
+          ]
+        },
+        "setting": {
+          "type": "string",
+          "enum": [
+            "interior",
+            "exterior",
+            "both"
+          ]
+        },
+        "time_of_day": {
+          "type": "string",
+          "enum": [
+            "night",
+            "day",
+            "interior_indeterminate",
+            "golden_hour",
+            "dusk",
+            "blue_hour",
+            "dawn",
+            "overcast"
+          ]
+        },
+        "camera_angle": {
+          "type": "string",
+          "enum": [
+            "eye_level",
+            "high_angle",
+            "low_angle",
+            "top_down",
+            "overhead",
+            "worms_eye",
+            "dutch_angle",
+            "pov",
+            "birds_eye"
+          ]
+        },
+        "visual_style": {
+          "type": "string",
+          "enum": [
+            "live_action",
+            "cg_stylized",
+            "anime",
+            "cg_photorealistic",
+            "cartoon_2d",
+            "stop_motion",
+            "mixed_media",
+            "rotoscope",
+            "noir",
+            "watercolor",
+            "minimalist",
+            "documentary",
+            "expressionist",
+            "painterly",
+            "surreal"
+          ]
+        },
+        "director": {
+          "type": "string",
+          "description": "Director name — free text, e.g. \"Ridley Scott\""
+        },
+        "genre": {
+          "type": "string",
+          "description": "Genre name — free text, e.g. \"Science Fiction\""
+        },
+        "era": {
+          "type": "string",
+          "description": "Depicted era, e.g. \"1980s\", \"near_future\", \"medieval\""
+        },
+        "year_min": {
+          "type": "integer",
+          "description": "Release year lower bound"
+        },
+        "year_max": {
+          "type": "integer",
+          "description": "Release year upper bound"
+        },
+        "limit": {
+          "type": "integer",
+          "default": 20,
+          "min": 1,
+          "max": 50
+        }
+      },
+      "example": {
+        "shot_type": "closeup",
+        "lens_character": "anamorphic",
+        "time_of_day": "night",
+        "limit": 10
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/similar",
+      "description": "Find frames similar to a reference frame or the centroid of multiple frames.",
+      "parameters": {
+        "frameId": {
+          "type": "string",
+          "description": "Single frame ID. Use frameId OR frameIds, not both."
+        },
+        "frameIds": {
+          "type": "array",
+          "description": "Array of frame IDs to average (find centroid)."
+        },
+        "mode": {
+          "type": "string",
+          "default": "semantic",
+          "enum": [
+            "semantic",
+            "visual",
+            "color"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "default": 20,
+          "min": 1,
+          "max": 50
+        }
+      },
+      "example": {
+        "frameId": "abc123",
+        "mode": "visual",
+        "limit": 5
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/frames?id=FRAME_ID",
+      "description": "Frame detail — full metadata, AI image prompt, film info, cinematography attributes for a single frame.",
+      "parameters": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "Frame ID (from search results)"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/frames/random?limit=20",
+      "description": "Random diverse sample of frames. Useful for inspiration or seeding a UI.",
+      "parameters": {
+        "limit": {
+          "type": "integer",
+          "default": 20,
+          "min": 1,
+          "max": 50
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/suggest?q=QUERY",
+      "description": "Autocomplete — fuzzy-match film titles and director/DP names.",
+      "parameters": {
+        "q": {
+          "type": "string",
+          "required": true,
+          "description": "Search prefix (min 2 chars)",
+          "min_length": 2
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/films?page=1&per_page=50&q=kubrick&sort=frames",
+      "description": "Paginated film catalog with poster art. Every entry carries `slug`, `frameCount`, and a ready-made `framesUrl` — list films, then pull their frames.",
+      "parameters": {
+        "page": {
+          "type": "integer",
+          "default": 1
+        },
+        "per_page": {
+          "type": "integer",
+          "default": 50,
+          "max": 100
+        },
+        "q": {
+          "type": "string",
+          "description": "Filter by film title, director, or cinematographer name"
+        },
+        "sort": {
+          "type": "string",
+          "default": "title",
+          "enum": [
+            "title",
+            "frames",
+            "year"
+          ],
+          "description": "frames = most frames first, the best-covered films"
+        },
+        "min_frames": {
+          "type": "integer",
+          "description": "Only films with at least this many frames"
+        }
+      },
+      "example": {
+        "q": "kubrick",
+        "sort": "frames"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/films/:slug",
+      "description": "Film detail — plot, runtime, MPAA rating, dominant colors, sample frames.",
+      "parameters": {
+        "slug": {
+          "type": "string",
+          "required": true,
+          "description": "Film slug from the catalog (e.g. \"blade-runner-2049-2017\")"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/films/frames?slug=SLUG&page=1&per_page=100",
+      "description": "Every frame we hold for one film, paginated. meta.total is the full frame count for the film, so page 1 tells you the whole size.",
+      "parameters": {
+        "slug": {
+          "type": "string",
+          "required": true,
+          "description": "Film slug from /films or from any frame's film.slug"
+        },
+        "page": {
+          "type": "integer",
+          "default": 1
+        },
+        "per_page": {
+          "type": "integer",
+          "default": 100,
+          "max": 200
+        }
+      },
+      "example": {
+        "slug": "blade-runner-2049-2017",
+        "per_page": 24
+      }
+    }
+  ],
+  "response_format": {
+    "description": "All responses return { data, meta }. Frames include: id, imageUrl (full-size), thumbUrl (1280px WebP thumbnail), deepLink (opens on FrameThrower), film (title, year, director, dp, genres), metadata (scene description, shot type, camera angle, lens, lighting, moods, colors). Frame detail also includes prompt (composed AI image prompt).",
+    "errors": "{ \"error\": \"message\" } with HTTP status 400/401/403/404/500."
+  },
+  "use_cases": [
+    "Script → visual references: search by scene description, then find similar frames to refine",
+    "Color palette matching: pass brand colors or mood hex values to find matching cinematography",
+    "Cinematography study: browse by craft attributes (anamorphic, low-key, overhead) across directors",
+    "Moodboard building: combine search + similar + color to curate a visual reference set",
+    "AI image prompts: get the prompt field from frame detail to use as generation input"
+  ]
+}

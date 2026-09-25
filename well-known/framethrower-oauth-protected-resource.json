@@ -1,0 +1,1 @@
+{"resource":"https://framethrower.ai","authorization_servers":["https://framethrower.ai"],"jwks_uri":"https://framethrower.ai/api/auth/mcp/jwks","scopes_supported":["openid","profile","email","offline_access"],"bearer_methods_supported":["header"],"resource_signing_alg_values_supported":["RS256","none"]}

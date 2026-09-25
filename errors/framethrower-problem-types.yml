@@ -1,0 +1,31 @@
+generated: '2026-09-25'
+method: searched
+source:
+- https://framethrower.ai/api/v1
+- openapi/framethrower-openapi.yml
+format: custom-json
+envelope: '{ "error": "message" }'
+problems:
+- status: 400
+  title: Malformed request
+  type: BadRequest
+  description: Malformed request.
+- status: 401
+  title: Unauthorized
+  type: Unauthorized
+  description: Missing, malformed, revoked or unknown token.
+  remediation: Send Authorization Bearer ft_ token created at https://framethrower.ai/settings?tab=api
+- status: 402
+  title: Insufficient credits
+  type: insufficient_credits
+  description: 'Not enough credits. The body carries everything needed to recover without reading docs: {code: "insufficient_credits", cost, balance, buy_credits}.'
+  remediation: Top up at https://framethrower.ai/settings?tab=billing
+- status: 403
+  title: Forbidden
+  description: Listed among error statuses in the JSON API reference.
+- status: 404
+  title: Not found
+  description: No such frame / No such film.
+- status: 500
+  title: Server error
+  description: Listed among error statuses in the JSON API reference.

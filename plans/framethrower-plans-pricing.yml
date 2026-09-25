@@ -1,0 +1,63 @@
+name: FrameThrower Plans and API Pricing
+generated: '2026-09-25'
+method: searched
+source: https://framethrower.ai/pricing
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+delivery:
+  delivery: managed
+note: The product is sold as Free / Pro / Studio subscriptions; API and MCP usage is metered separately in credits on any plan, including Free. The JSON API reference (https://framethrower.ai/api/v1) states "$1 = 1,000 credits" and per-endpoint costs.
+plans:
+- name: Free
+  description: For browsing and casual reference.
+  price: 0
+  price_text: $0 / month
+  currency: USD
+  features:
+  - 50 searches per day
+  - 20 HD downloads / month
+  - 10 image searches / month
+  - Up to 3 moodboards
+  - Browse the full catalog
+  limits:
+  - 50 searches per day
+  - 20 HD downloads / month
+  - 10 image searches / month
+- name: Pro
+  description: For working filmmakers and AI creators.
+  price_text: $7/month billed annually
+  currency: USD
+  features:
+  - Unlimited searches
+  - Unlimited downloads
+  - 200 image searches / month
+  - Unlimited moodboards
+  - Bulk download (ZIP)
+  - Priority support
+  limits:
+  - 200 image searches / month
+- name: Studio
+  description: For crews — 1 owner + invited members.
+  price_text: $115/seat/year.
+  currency: USD
+  features:
+  - Everything in Pro, per seat
+  - Unlimited downloads / seat
+  - 500 image searches / month / seat
+  - Bulk download (ZIP)
+  - Priority support
+  limits:
+  - 500 image searches / month / seat
+- name: API & MCP usage
+  description: Metered per call, on any plan including Free.
+  price_text: Metered per call, on any plan including Free.
+  currency: USD
+  features:
+  - credits never expire
+  - New accounts start with 2,000 free — no card.
+  - Reads — search, browse, similar, a frame, its prompt (2 credits, 500 per $1)
+  - Search with the query rewriter on /search?enhance=true (3 credits)
+  - Anything that runs a model on an image (10 credits, 100 per $1)
+  - Edge extraction lineart (20 credits, 50 per $1)
+  limits: []
