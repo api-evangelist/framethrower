@@ -109,35 +109,11 @@ common:
 - type: Integrations
   url: https://framethrower.ai/comfyui
 apis:
-- name: FrameThrower API
-  description: 'REST API over the FrameThrower film-still library: plain-language, reference-image and colour search,
-    craft-attribute browsing, similar-frame lookup, and film and per-frame metadata (thumbnails, palettes, AI prompt,
-    deep links; never raw image bytes). Eleven endpoints, bearer token (ft_ prefix), metered per call in credits.'
-  humanURL: https://framethrower.ai/developers
-  baseURL: https://framethrower.ai/api/v1
-  tags:
-  - Film
-  - Cinematography
-  - Image Search
-  - Visual Reference
-  - Search
-  properties:
-  - type: OpenAPI
-    url: openapi/framethrower-openapi.yml
-  - type: OpenAPI
-    name: OpenAPI (provider-hosted)
-    url: https://framethrower.ai/api/v1/openapi.json
-  - type: Documentation
-    url: https://framethrower.ai/developers
-  - type: APIReference
-    url: https://framethrower.ai/api/v1
-  - type: JSONSchema
-    url: json-schema/framethrower-frame-schema.json
-  aid: framethrower:framethrower-api
 - name: FrameThrower MCP Server
-  description: Remote Model Context Protocol server (streamable HTTP) at https://framethrower.ai/api/mcp with four
-    tools (search_frames, find_by_craft, find_similar, get_frame_details), OAuth 2.1 with dynamic client registration;
-    listed in the official MCP registry as ai.framethrower/framethrower.
+  description: >-
+    Remote Model Context Protocol server (streamable HTTP) at https://framethrower.ai/api/mcp with four
+    tools (search_frames, find_by_craft, find_similar, get_frame_details), OAuth 2.1 with dynamic client
+    registration; listed in the official MCP registry as ai.framethrower/framethrower.
   humanURL: https://framethrower.ai/mcp
   baseURL: https://framethrower.ai/api/mcp
   tags:
@@ -152,6 +128,70 @@ apis:
   - type: GitHubRepository
     url: https://github.com/framethrower-ai/framethrower-mcp
   aid: framethrower:framethrower-mcp-server
+- aid: framethrower:framethrower-discovery-api
+  name: FrameThrower Discovery API
+  description: Autocomplete and helpers
+  humanURL: https://framethrower.ai/developers
+  baseURL: https://framethrower.ai/api/v1
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/framethrower-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://framethrower.ai/developers
+  - type: APIReference
+    url: https://framethrower.ai/api/v1
+  - type: JSONSchema
+    url: json-schema/framethrower-frame-schema.json
+- aid: framethrower:framethrower-films-api
+  name: FrameThrower Films API
+  description: The film catalogue
+  humanURL: https://framethrower.ai/developers
+  baseURL: https://framethrower.ai/api/v1
+  tags:
+  - Films
+  properties:
+  - type: OpenAPI
+    url: openapi/framethrower-films-api-openapi.yml
+  - type: Documentation
+    url: https://framethrower.ai/developers
+  - type: APIReference
+    url: https://framethrower.ai/api/v1
+  - type: JSONSchema
+    url: json-schema/framethrower-frame-schema.json
+- aid: framethrower:framethrower-frames-api
+  name: FrameThrower Frames API
+  description: Individual frames and their metadata
+  humanURL: https://framethrower.ai/developers
+  baseURL: https://framethrower.ai/api/v1
+  tags:
+  - Frames
+  properties:
+  - type: OpenAPI
+    url: openapi/framethrower-frames-api-openapi.yml
+  - type: Documentation
+    url: https://framethrower.ai/developers
+  - type: APIReference
+    url: https://framethrower.ai/api/v1
+  - type: JSONSchema
+    url: json-schema/framethrower-frame-schema.json
+- aid: framethrower:framethrower-search-api
+  name: FrameThrower Search API
+  description: Find frames by text, image or colour
+  humanURL: https://framethrower.ai/developers
+  baseURL: https://framethrower.ai/api/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/framethrower-search-api-openapi.yml
+  - type: Documentation
+    url: https://framethrower.ai/developers
+  - type: APIReference
+    url: https://framethrower.ai/api/v1
+  - type: JSONSchema
+    url: json-schema/framethrower-frame-schema.json
 x-enrichment:
   date: '2026-09-25'
   status: enriched

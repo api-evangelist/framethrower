@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Framethrower Frames API
+  version: 1.0.0
+  contact:
+    name: FrameThrower
+    url: https://framethrower.ai/developers
+    email: contact@framethrower.ai
+  license:
+    name: Proprietary
+    url: https://framethrower.ai/legal/tos
+  termsOfService: https://framethrower.ai/legal/tos
+  description: 'Operations tagged Frames across 2 of this provider''s published API definitions: framethrower-openapi.json, framethrower-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://framethrower.ai/api/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Frames
+  description: Individual frames and their metadata
+paths:
+  /frames:
+    get:
+      tags:
+      - Frames
+      operationId: getFrame
+      summary: Frame detail
+      description: 'Full metadata, AI image prompt, film info and cinematography attributes for one frame.
+
+
+        **Cost: 2 credits.** $1 = 1,000 credits. Returns 402 when the balance is short.'
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The frame
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Frame'
+                  meta:
+                    type: object
+                    additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '402':
+          $ref: '#/components/responses/InsufficientCredits'
+        '404':
+          description: No such frame
+    servers:
+    - url: https://framethrower.ai/api/v1
+      description: Production
+  /frames/random:
+    get:
+      tags:
+      - Frames
+      operationId: randomFrames
+      summary: Random sample
+      description: 'A diverse random sample — useful for inspiration or seeding a UI.
+
+
+        **Cost: 2 credits.** $1 = 1,000 credits. Returns 402 when the balance is short.'
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 50
+          default: 20
+      responses:
+        '200':
+          description: Frames
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Frame'
+                  meta:
+                    type: object
+                    additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '402':
+          $ref: '#/components/responses/InsufficientCredits'
+    servers:
+    - url: https://framethrower.ai/api/v1
+      description: Production
+components:
+  responses:
+    Unauthorized:
+      description: Missing, malformed, revoked or unknown token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InsufficientCredits:
+      description: Not enough credits. The body carries everything needed to recover without reading docs.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: string
+                const: insufficient_credits
+              cost:
+                type: integer
+              balance:
+                type: integer
+              buy_credits:
+                type: string
+                format: uri
+  schemas:
+    Frame:
+      type: object
+      description: A single film frame. Thumbnails and deep links only — never raw image bytes.
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+          description: Deep link to this frame on FrameThrower
+        thumbnail:
+          type: string
+          format: uri
+        depthUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Precomputed depth map (Depth-Anything V2), WebP, same pixel dimensions as the frame — feed straight to a depth ControlNet. null when the frame has no map; a stale URL 404s, in which case compute depth locally. Never falls back to the colour image.
+        score:
+          type: number
+          description: Relevance, when the call was a search
+        film:
+          type: object
+          properties:
+            title:
+              type: string
+            year:
+              type: integer
+            slug:
+              type: string
+            frameCount:
+              type: integer
+            director:
+              type: string
+            cinematographer:
+              type: string
+        shot_type:
+          type: string
+        lens_character:
+          type: string
+        camera_angle:
+          type: string
+        setting:
+          type: string
+        time_of_day:
+          type: string
+        visual_style:
+          type: string
+        colorPalette:
+          type: array
+          items:
+            type: string
+          description: Dominant colours as hex
+        colorDescription:
+          type: string
+        prompt:
+          type: string
+          description: Stored descriptive prompt for the frame
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        docs:
+          type: string
+        api_reference:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Personal access token, prefix `ft_`. Create one at https://framethrower.ai/settings?tab=api — free accounts included, no plan required.
+externalDocs:
+  url: https://framethrower.ai/developers
+  description: Developer documentation
+x-refined-from:
+- framethrower-openapi.json
+- framethrower-openapi.yml

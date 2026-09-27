@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: Framethrower Discovery API
+  version: 1.0.0
+  contact:
+    name: FrameThrower
+    url: https://framethrower.ai/developers
+    email: contact@framethrower.ai
+  license:
+    name: Proprietary
+    url: https://framethrower.ai/legal/tos
+  termsOfService: https://framethrower.ai/legal/tos
+  description: 'Operations tagged Discovery across 2 of this provider''s published API definitions: framethrower-openapi.json, framethrower-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://framethrower.ai/api/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Discovery
+  description: Autocomplete and helpers
+paths:
+  /suggest:
+    get:
+      tags:
+      - Discovery
+      operationId: suggest
+      summary: Autocomplete
+      description: 'Fuzzy-match film titles and director/DP names.
+
+
+        **Free — 0 credits.** It is an in-memory prefix match and costs nothing to serve, so charging per keystroke would be hostile.'
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 2
+      responses:
+        '200':
+          description: Suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://framethrower.ai/api/v1
+      description: Production
+components:
+  responses:
+    Unauthorized:
+      description: Missing, malformed, revoked or unknown token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        docs:
+          type: string
+        api_reference:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Personal access token, prefix `ft_`. Create one at https://framethrower.ai/settings?tab=api — free accounts included, no plan required.
+externalDocs:
+  url: https://framethrower.ai/developers
+  description: Developer documentation
+x-refined-from:
+- framethrower-openapi.json
+- framethrower-openapi.yml

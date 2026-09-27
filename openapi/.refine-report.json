@@ -1,0 +1,29 @@
+{
+  "provider": "framethrower",
+  "sources": [
+    "_original/framethrower-openapi.json",
+    "framethrower-openapi.yml"
+  ],
+  "outputs": [
+    "framethrower-discovery-api-openapi.yml",
+    "framethrower-films-api-openapi.yml",
+    "framethrower-frames-api-openapi.yml",
+    "framethrower-search-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/framethrower-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "framethrower-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "framethrower-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Discovery' spans 2 source specs (framethrower-openapi.json, framethrower-openapi.yml): per-path servers applied",
+    "tag 'Films' spans 2 source specs (framethrower-openapi.json, framethrower-openapi.yml): per-path servers applied",
+    "tag 'Frames' spans 2 source specs (framethrower-openapi.json, framethrower-openapi.yml): per-path servers applied",
+    "tag 'Search' spans 2 source specs (framethrower-openapi.json, framethrower-openapi.yml): per-path servers applied",
+    "apis.yml register: written (+4 apis, 5 total)"
+  ],
+  "skipped": []
+}
