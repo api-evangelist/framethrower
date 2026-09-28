@@ -17,23 +17,57 @@ server:
       listChanged: true
 auth:
   type: oauth2
-  note: OAuth 2.1 per the provider README; authorization server metadata at https://framethrower.ai/.well-known/oauth-authorization-server (authorization_code + PKCE S256, dynamic client registration at /api/auth/mcp/register). initialize and tools/list answered anonymously (200) on 2026-09-25; tool calls spend account credits.
+  note: OAuth 2.1 per the provider README; authorization server metadata at https://framethrower.ai/.well-known/oauth-authorization-server
+    (authorization_code + PKCE S256, dynamic client registration at /api/auth/mcp/register). initialize
+    and tools/list answered anonymously (200) on 2026-09-25; tool calls spend account credits.
 tools:
 - name: search_frames
-  inputs: [query, limit]
-  required: [query]
+  inputs:
+  - query
+  - limit
+  required:
+  - query
+  description: Search the FrameThrower cinematography reference library by concept, mood, color, composition,
+    or scene. Returns reference frames with film/credits metadata, a preview thumbnail, the full-resolution
+    image URL (use this one for slide decks and documents), a precomputed DEPTH MAP url (greyscale, same
+    dimensions as the frame — pass it straight to a depth ControlNet or any image-to-image pipeline that…
 - name: find_by_craft
-  inputs: [lens, shot_size, visual_style, setting, time_of_day, director, year_min, year_max, limit]
+  inputs:
+  - lens
+  - shot_size
+  - visual_style
+  - setting
+  - time_of_day
+  - director
+  - year_min
+  - year_max
+  - limit
+  description: Find frames by specific cinematography craft attributes — lens character, shot size, visual
+    style, setting, time of day, director, or year range. All optional; combine to narrow. Use this to
+    refine a search precisely.
 - name: find_similar
-  inputs: [frameId, limit]
-  required: [frameId]
+  inputs:
+  - frameId
+  - limit
+  required:
+  - frameId
+  description: Find frames visually/semantically similar to a given frame id (from a prior result). Use
+    this to pull more references like one the user shortlisted.
 - name: get_frame_details
-  inputs: [frameId]
-  required: [frameId]
+  inputs:
+  - frameId
+  required:
+  - frameId
+  description: Get the full metadata + preview thumbnail + full-resolution image URL + depth map URL +
+    link for a single frame id. The depth map is precomputed and free — use it when the user is generating
+    images and needs the composition or camera geometry of this frame.
 tools_list_file: mcp/framethrower-mcp-tools-list.json
 deployment:
   mode: remote
   endpoint: https://framethrower.ai/api/mcp
   auth: oauth
   verified: probed
-  note: The README offers npx -y mcp-remote https://framethrower.ai/api/mcp as a bridge for stdio-only clients; mcp-remote is a third-party bridge, not a FrameThrower package.
+  note: The README offers npx -y mcp-remote https://framethrower.ai/api/mcp as a bridge for stdio-only
+    clients; mcp-remote is a third-party bridge, not a FrameThrower package.
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
