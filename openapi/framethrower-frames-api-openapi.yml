@@ -1,7 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Framethrower Frames API
+  title: FrameThrower Frames API
   version: 1.0.0
+  summary: Cinematography reference search over 5,489 films.
+  description: Search a film stills library indexed frame by frame on lighting, lens character, shot size, camera angle, colour palette and mood — in plain language, by reference image, or by colour.
   contact:
     name: FrameThrower
     url: https://framethrower.ai/developers
@@ -10,7 +12,6 @@ info:
     name: Proprietary
     url: https://framethrower.ai/legal/tos
   termsOfService: https://framethrower.ai/legal/tos
-  description: 'Operations tagged Frames across 2 of this provider''s published API definitions: framethrower-openapi.json, framethrower-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://framethrower.ai/api/v1
   description: Production
@@ -59,9 +60,6 @@ paths:
           $ref: '#/components/responses/InsufficientCredits'
         '404':
           description: No such frame
-    servers:
-    - url: https://framethrower.ai/api/v1
-      description: Production
   /frames/random:
     get:
       tags:
@@ -101,9 +99,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '402':
           $ref: '#/components/responses/InsufficientCredits'
-    servers:
-    - url: https://framethrower.ai/api/v1
-      description: Production
 components:
   responses:
     Unauthorized:
@@ -132,6 +127,15 @@ components:
                 type: string
                 format: uri
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        docs:
+          type: string
+        api_reference:
+          type: string
     Frame:
       type: object
       description: A single film frame. Thumbnails and deep links only — never raw image bytes.
@@ -190,15 +194,6 @@ components:
         prompt:
           type: string
           description: Stored descriptive prompt for the frame
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        docs:
-          type: string
-        api_reference:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
@@ -207,6 +202,3 @@ components:
 externalDocs:
   url: https://framethrower.ai/developers
   description: Developer documentation
-x-refined-from:
-- framethrower-openapi.json
-- framethrower-openapi.yml

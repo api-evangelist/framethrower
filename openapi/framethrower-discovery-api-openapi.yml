@@ -1,7 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Framethrower Discovery API
+  title: FrameThrower Discovery API
   version: 1.0.0
+  summary: Cinematography reference search over 5,489 films.
+  description: Search a film stills library indexed frame by frame on lighting, lens character, shot size, camera angle, colour palette and mood — in plain language, by reference image, or by colour.
   contact:
     name: FrameThrower
     url: https://framethrower.ai/developers
@@ -10,7 +12,6 @@ info:
     name: Proprietary
     url: https://framethrower.ai/legal/tos
   termsOfService: https://framethrower.ai/legal/tos
-  description: 'Operations tagged Discovery across 2 of this provider''s published API definitions: framethrower-openapi.json, framethrower-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://framethrower.ai/api/v1
   description: Production
@@ -49,9 +50,6 @@ paths:
                 additionalProperties: true
         '401':
           $ref: '#/components/responses/Unauthorized'
-    servers:
-    - url: https://framethrower.ai/api/v1
-      description: Production
 components:
   responses:
     Unauthorized:
@@ -78,6 +76,3 @@ components:
 externalDocs:
   url: https://framethrower.ai/developers
   description: Developer documentation
-x-refined-from:
-- framethrower-openapi.json
-- framethrower-openapi.yml
