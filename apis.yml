@@ -150,6 +150,8 @@ apis:
   humanURL: https://framethrower.ai/developers
   baseURL: https://framethrower.ai/api/v1
   tags:
+  - Film
+  tags_raw:
   - Films
   properties:
   - type: OpenAPI
