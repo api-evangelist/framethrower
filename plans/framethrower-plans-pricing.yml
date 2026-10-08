@@ -61,3 +61,34 @@ plans:
   - Anything that runs a model on an image (10 credits, 100 per $1)
   - Edge extraction lineart (20 credits, 50 per $1)
   limits: []
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pro
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Studio
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: API & MCP usage
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
