@@ -36,6 +36,8 @@ maintainers:
   email: contact@framethrower.ai
   url: https://framethrower.ai/
 common:
+- type: RateLimits
+  url: rate-limits/framethrower-rate-limits.yml
 - type: AgenticAccess
   url: agentic-access/framethrower-agentic-access.yml
 - type: Plans
