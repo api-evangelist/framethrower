@@ -522,14 +522,14 @@ components:
               buy_credits:
                 type: string
                 format: uri
-    BadRequest:
-      description: Malformed request
+    Unauthorized:
+      description: Missing, malformed, revoked or unknown token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing, malformed, revoked or unknown token
+    BadRequest:
+      description: Malformed request
       content:
         application/json:
           schema:

@@ -161,32 +161,6 @@ paths:
         '402':
           $ref: '#/components/responses/InsufficientCredits'
 components:
-  responses:
-    Unauthorized:
-      description: Missing, malformed, revoked or unknown token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    InsufficientCredits:
-      description: Not enough credits. The body carries everything needed to recover without reading docs.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              code:
-                type: string
-                const: insufficient_credits
-              cost:
-                type: integer
-              balance:
-                type: integer
-              buy_credits:
-                type: string
-                format: uri
   schemas:
     Error:
       type: object
@@ -255,6 +229,32 @@ components:
         prompt:
           type: string
           description: Stored descriptive prompt for the frame
+  responses:
+    Unauthorized:
+      description: Missing, malformed, revoked or unknown token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InsufficientCredits:
+      description: Not enough credits. The body carries everything needed to recover without reading docs.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: string
+                const: insufficient_credits
+              cost:
+                type: integer
+              balance:
+                type: integer
+              buy_credits:
+                type: string
+                format: uri
   securitySchemes:
     bearerAuth:
       type: http
