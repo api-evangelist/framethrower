@@ -22,16 +22,20 @@ auth:
     and tools/list answered anonymously (200) on 2026-09-25; tool calls spend account credits.
 tools:
 - name: search_frames
+  description: Search the FrameThrower cinematography reference library by concept, mood, color, composition,
+    or scene. Returns reference frames with film/credits metadata, a preview thumbnail, the full-resolution
+    image URL (use this one for slide decks and documents), a precomputed DEPTH MAP url (greyscale, same
+    dimensions as the frame — pass it straight to a depth ControlNet or any image-to-image pipeline that
+    wants geometry), and a link to view on FrameThrower.
   inputs:
   - query
   - limit
   required:
   - query
-  description: Search the FrameThrower cinematography reference library by concept, mood, color, composition,
-    or scene. Returns reference frames with film/credits metadata, a preview thumbnail, the full-resolution
-    image URL (use this one for slide decks and documents), a precomputed DEPTH MAP url (greyscale, same
-    dimensions as the frame — pass it straight to a depth ControlNet or any image-to-image pipeline that…
 - name: find_by_craft
+  description: Find frames by specific cinematography craft attributes — lens character, shot size, visual
+    style, setting, time of day, director, or year range. All optional; combine to narrow. Use this to
+    refine a search precisely.
   inputs:
   - lens
   - shot_size
@@ -42,25 +46,22 @@ tools:
   - year_min
   - year_max
   - limit
-  description: Find frames by specific cinematography craft attributes — lens character, shot size, visual
-    style, setting, time of day, director, or year range. All optional; combine to narrow. Use this to
-    refine a search precisely.
 - name: find_similar
+  description: Find frames visually/semantically similar to a given frame id (from a prior result). Use
+    this to pull more references like one the user shortlisted.
   inputs:
   - frameId
   - limit
   required:
   - frameId
-  description: Find frames visually/semantically similar to a given frame id (from a prior result). Use
-    this to pull more references like one the user shortlisted.
 - name: get_frame_details
+  description: Get the full metadata + preview thumbnail + full-resolution image URL + depth map URL +
+    link for a single frame id. The depth map is precomputed and free — use it when the user is generating
+    images and needs the composition or camera geometry of this frame.
   inputs:
   - frameId
   required:
   - frameId
-  description: Get the full metadata + preview thumbnail + full-resolution image URL + depth map URL +
-    link for a single frame id. The depth map is precomputed and free — use it when the user is generating
-    images and needs the composition or camera geometry of this frame.
 tools_list_file: mcp/framethrower-mcp-tools-list.json
 deployment:
   mode: remote
@@ -96,3 +97,4 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools_count: 4
