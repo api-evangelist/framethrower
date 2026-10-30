@@ -1,4 +1,4 @@
-# FrameThrower (framethrower)
+# FrameThrower
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,12 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-FrameThrower is a film-still reference library indexed frame by frame on lighting, lens character, shot size, camera angle, colour palette, mood and era.
+FrameThrower is a film-still reference library for filmmakers, students and creative teams, indexed frame by frame on lighting, lens character, shot size, camera angle, colour palette, mood and era. A REST API (OpenAPI 3.1 at https://framethrower.ai/api/v1/openapi.json, 11 endpoints, bearer-token auth) and an MCP server at https://framethrower.ai/api/mcp (four tools, OAuth 2.1) expose visual-reference search and film and frame information; an npm SDK (framethrower-ai) and an MIT-licensed MCP repository (github.com/framethrower-ai/framethrower-mcp) are published. Free plan with usage-based paid upgrades. Submitter-stated by the founder, Leo Kadieff.
 
-- Website: https://framethrower.ai/
-- Developer docs: https://framethrower.ai/developers
-- OpenAPI 3.1: https://framethrower.ai/api/v1/openapi.json (local copy: `openapi/framethrower-openapi.yml`)
-- MCP server: https://framethrower.ai/api/mcp (four tools, OAuth 2.1)
-- npm SDK: `framethrower-ai`
+**Areas:** Film · Cinematography · Visual Reference · Image Search · Media · Creative Tools · MCP · Agent-Native
 
-The machine-readable index of this profile is [`apis.yml`](apis.yml).
+## FrameThrower on APIs.io
+
+Everything profiled for FrameThrower is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/framethrower/](https://apis.io/providers/framethrower/)** — or go straight to one of the APIs or properties below.
+
+### APIs (5)
+
+- [FrameThrower MCP Server](https://apis.io/apis/framethrower/framethrower-mcp-server/) — Remote Model Context Protocol server (streamable HTTP) at https://framethrower.ai/api/mcp with four tools (search_frames, find_by_craft, find_similar,…
+- [FrameThrower Discovery API](https://apis.io/apis/framethrower/framethrower-discovery-api/) — Autocomplete and helpers
+- [FrameThrower Films API](https://apis.io/apis/framethrower/framethrower-films-api/) — The film catalogue
+- [FrameThrower Frames API](https://apis.io/apis/framethrower/framethrower-frames-api/) — Individual frames and their metadata
+- [FrameThrower Search API](https://apis.io/apis/framethrower/framethrower-search-api/) — Find frames by text, image or colour
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [FrameThrower](https://apis.io/servers/framethrower/framethrower/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Framethrower Agentic Access](https://apis.io/agentic-access/framethrower/framethrower-agentic-access/)
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [Frame](https://apis.io/schemas/framethrower/framethrower-frame/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Framethrower Context](https://apis.io/jsonld/framethrower/framethrower-context/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Framethrower Api Overlay](https://apis.io/overlays/framethrower/framethrower-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [FrameThrower API Rules](https://apis.io/rules/framethrower/framethrower-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Framethrower Authentication](https://apis.io/security/framethrower/framethrower-authentication/)
+- [Framethrower Domain Security](https://apis.io/security/framethrower/framethrower-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Framethrower Scopes](https://apis.io/scopes/framethrower/framethrower-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Framethrower Plans Pricing](https://apis.io/plans/framethrower/framethrower-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Framethrower Rate Limits](https://apis.io/rate-limits/framethrower/framethrower-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://framethrower.ai/)
+- [Documentation](https://framethrower.ai/developers)
+- [API reference](https://framethrower.ai/api/v1)
+- [Pricing](https://framethrower.ai/pricing)
+- [Sign up](https://framethrower.ai/register)
+- [Terms of service](https://framethrower.ai/legal/tos)
+- [Privacy policy](https://framethrower.ai/legal/privacy)
+- [GitHub](https://github.com/framethrower-ai)
+
+## API Evangelist rating
+
+**Kin Score 52.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 61.0 |
+| Contract governance | 35.6 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 37.5 |
+| Access clarity | 76.3 |
+
+**Agent readiness 47.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/framethrower/](https://apis.io/providers/framethrower/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for FrameThrower: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/framethrower/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
